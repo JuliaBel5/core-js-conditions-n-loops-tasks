@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                             *
@@ -21,8 +22,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return 0 + number >= 0;
 }
 
 /**
@@ -38,8 +39,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > a && b > c) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -82,8 +89,15 @@ function canQueenCaptureKing(/* queen, king */) {
  *  2, 2, 5   => false
  *  3, 0, 3   => false
  */
-function isIsoscelesTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isIsoscelesTriangle(a, b, c) {
+  if (a === 0 || b === 0 || c === 0) return false;
+  if (
+    (a === b && a + b > c) ||
+    (b === c && b + c > a) ||
+    (a === c && a + c > b)
+  )
+    return true;
+  return false;
 }
 
 /**
@@ -100,8 +114,17 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const numbers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+  if (num <= 10) {
+    return numbers[num - 1];
+  }
+  const repeat = Math.floor(num / 10);
+  let result = '';
+  for (let i = 1; i <= repeat; i += 1) {
+    result += numbers[9];
+  }
+  return result + numbers[(num % 10) - 1];
 }
 
 /**
@@ -119,10 +142,74 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const numbers = {
+    0: 'zero ',
+    1: 'one ',
+    2: 'two ',
+    3: 'three ',
+    4: 'four ',
+    5: 'five ',
+    6: 'six ',
+    7: 'seven ',
+    8: 'eight ',
+    9: 'nine ',
+    ',': 'point ',
+    '.': 'point ',
+    '-': 'minus ',
+  };
+  let result = '';
+  let finalResult = '';
+  for (let i = 0; i < numberStr.length; i += 1) {
+    switch (numberStr[i]) {
+      case '0':
+        result += numbers['0'];
+        break;
+      case '1':
+        result += numbers['1'];
+        break;
+      case '2':
+        result += numbers['2'];
+        break;
+      case '3':
+        result += numbers['3'];
+        break;
+      case '4':
+        result += numbers['4'];
+        break;
+      case '5':
+        result += numbers['5'];
+        break;
+      case '6':
+        result += numbers['6'];
+        break;
+      case '7':
+        result += numbers['7'];
+        break;
+      case '8':
+        result += numbers['8'];
+        break;
+      case '9':
+        result += numbers['9'];
+        break;
+      case ',':
+        result += numbers[','];
+        break;
+      case '.':
+        result += numbers['.'];
+        break;
+      case '-':
+        result += numbers['-'];
+        break;
+      default:
+        result += numberStr[i];
+    }
+  }
+  for (let i = 0; i < result.length - 1; i += 1) {
+    finalResult += result[i];
+  }
+  return finalResult;
 }
-
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
