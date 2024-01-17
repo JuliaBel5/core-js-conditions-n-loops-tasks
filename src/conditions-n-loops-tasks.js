@@ -1,4 +1,3 @@
-/* eslint-disable default-case */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                             *
